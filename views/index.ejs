@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="static/uppy.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <h1>
+        <%= title %>
+    </h1>
+    <div id="drag-drop-area"></div>
+    <script src="static/uppy.min.js"></script>
+    <script>
+        var uppy = Uppy.Core()
+            .use(Uppy.Dashboard, {
+                inline: true,
+                target: '#drag-drop-area'
+            })
+            .use(Uppy.Tus, { endpoint: 'http://localhost:3000/uploads/' })
+
+        uppy.on('complete', (result) => {
+            console.log('Upload complete! We’ve uploaded these files:', result.successful)
+        })
+    </script>
+</body>
+
+</html>
